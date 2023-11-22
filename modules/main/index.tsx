@@ -117,14 +117,14 @@ function m(props: MainIndexProps): any {
         </Text>
 
         {/* Kotak pencarian */}
+        <Pressable style={{width:width,height:80}} onPress={() => {
+        LibNavigation.navigate('utils/searchlist'),console.log('tes')
+          }}>
         <View style={{ padding: 10, flex: 1, margin: 15, borderRadius: 5, alignContent: 'center', alignItems: 'center', flexDirection: 'row', backgroundColor: '#fff', ...elevation(3) }}>
-          <LibIcon color='grey' name={'car'} />
-          <TextInput
-            placeholder='Search'
-            autoCorrect={true}
-            style={{ marginLeft: 10, width: width - 30 }}
-          />
+          <LibIcon color='grey' name={'search-web'} />
+          <Text style={{ marginLeft: 10, flex: 1,color:'gray',fontSize: 16 }} >Cari lapangan </Text>
         </View>
+        </Pressable>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginLeft: 15 }}>
           {data?.map((item, i) => {
             return (

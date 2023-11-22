@@ -1,6 +1,6 @@
 // withHooks
-import { memo } from 'react';
-
+import { memo, useState } from 'react';
+import { Feather } from '@expo/vector-icons';
 import { LibIcon } from 'esoftplay/cache/lib/icon/import';
 import { LibNavigation } from 'esoftplay/cache/lib/navigation/import';
 import { LibStyle } from 'esoftplay/cache/lib/style/import';
@@ -32,6 +32,23 @@ function m(props: DetailDetailProps): any {
 
   // // Menghitung tinggi status bar berdasarkan platform
   // const STATUSBAR_HEIGHT = (Platform.OS === "ios" ? isIPhoneX ? 44 : 20 : StatusBar.currentHeight) || 0;
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const favorite = () => {  
+    if (selectedIndex == 0) {
+     
+      return( 
+      <Pressable onPress={() => { setSelectedIndex(1) }}>
+                <LibIcon name='heart-outline' size={30} color='red' />
+              </Pressable>)
+    } else {
+      return( 
+        <Pressable onPress={() => { setSelectedIndex(0) }}>
+                  <LibIcon name='heart' size={30} color='red' />
+                </Pressable>)
+
+    }
+  }
   return (
     <View style={{ flex: 1,  backgroundColor: "#fff", }} >
       <ScrollView >
@@ -41,15 +58,13 @@ function m(props: DetailDetailProps): any {
             source={image}>
 
             <View style={{
-              flexDirection: 'row', marginTop: -20,
+              flexDirection: 'row', marginTop: -15,
               justifyContent: 'space-between', width: width - 40, height: 60, alignItems: 'center',
             }}>
               <Pressable onPress={() => { LibNavigation.navigate('main/index') }}>
-                <LibIcon name='backspace-outline' size={30} color='white' />
+              <Feather name="chevron-left" size={40} color="#ffffff" />
               </Pressable>
-              <Pressable onPress={() => { LibNavigation.navigate('main/index') }}>
-                <LibIcon name='heart-outline' size={30} color='red' />
-              </Pressable>
+             {favorite()}
 
             </View>
           </ImageBackground>
@@ -95,9 +110,7 @@ function m(props: DetailDetailProps): any {
         <View style={{ marginHorizontal: 30, width: width - 60, marginVertical: 10, padding: 5, alignContent: 'center', backgroundColor: 'white', borderRadius: 10, ...elevation(5) }}>
           <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Jam Oprasional</Text>
 
-          <Text>
-            Senin - Jumat : 08.00 - 22.00
-          </Text>
+          <Text>Senin - Jumat : 08.00 - 22.00</Text>
 
         </View>
         <View style={{
@@ -134,7 +147,7 @@ function m(props: DetailDetailProps): any {
           </View>
         </View>
 
-        <View style={{ shadowRadius: 3, shadowOpacity: 0.26, elevation: 8, backgroundColor: '#aa5a5a', borderRadius: 10, marginHorizontal: 30, width: width - 60, marginVertical: 10, padding: 10, alignContent: 'center', }}>
+        <View style={{ shadowRadius: 3, shadowOpacity: 0.26, elevation: 8, backgroundColor: '#ffffff', borderRadius: 10, marginHorizontal: 30, width: width - 60, marginVertical: 10, padding: 10, alignContent: 'center', }}>
           <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Lokasi</Text>
           <Text>Jl. Raya Ciputat No. 1, Ciputat, Tangerang Selatan, Banten</Text>
         </View>
@@ -144,12 +157,13 @@ function m(props: DetailDetailProps): any {
       <View style={{ 
         shadowColor: 'black', shadowOffset: { width: 0, height: 10},
         // bagian ini penting untuk shadow
-        shadowRadius: 3, shadowOpacity: 0.26, elevation: 8, backgroundColor: '#4EC5F1',
+      
+        shadowRadius: 3, shadowOpacity: 0.26, elevation: 8, backgroundColor: '#ffffff',
         width: width, flexDirection: 'row', justifyContent: 'center',alignItems:'center', height: 80,}}>
         <Pressable onPress={() => {
-          LibNavigation.navigate('detail/pilihjam')
-          }} style={{height:40 ,backgroundColor:'skyblue',alignItems:'center',width:width-50,justifyContent:'center'}}> 
-          <Text allowFontScaling={false}>Pesan Sekarang</Text>
+          LibNavigation.navigate('detail/pilihtanggal')
+          }} style={{height:40 ,backgroundColor:'#04a9af',alignItems:'center',  borderRadius: 10,width:width-50,justifyContent:'center'}}> 
+         <Text allowFontScaling={false} style={{ fontSize: 16, color: '#ffffff', fontWeight: 'bold', }}>Pesan Sekarang</Text>
         </Pressable>
       </View>
 

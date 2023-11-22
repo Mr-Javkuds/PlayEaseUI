@@ -7,13 +7,13 @@ import React from 'react';
 import { Dimensions, Pressable, Text, View } from 'react-native';
 
 
-export interface Utils_CustomCardArgs {
+export interface UtilsCustom_cardArgs {
   
 }
-export interface Utils_CustomCardProps {
+export interface UtilsCustom_cardProps {
   name?: string,
 }
-function m(props: Utils_CustomCardProps): any {
+function m(props: UtilsCustom_cardProps): any {
   let Name = props.name
   let { width, height } = Dimensions.get("window");
   return (
