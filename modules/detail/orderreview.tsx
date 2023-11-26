@@ -11,6 +11,7 @@ import { ImageBackground, Platform, Text, View, ScrollView, Pressable, Dimension
 import { LibPicture } from 'esoftplay/cache/lib/picture/import';
 import { LibNavigation } from 'esoftplay/cache/lib/navigation/import';
 import { Divider } from 'react-native-paper';
+import esp from 'esoftplay/esp';
 
 export interface DetailOrderreviewArgs {
 
@@ -20,8 +21,9 @@ export interface DetailOrderreviewProps {
 }
 function m(props: DetailOrderreviewProps): any {
   let { width, } = Dimensions.get("window");
-
-  const elevation = (value: any) => {
+  const { data } = LibNavigation.getArgsAll(props)
+  esp.log({ data });
+  function elevation(value: any) {
     if (Platform.OS === 'ios') {
       if (value === 0) return {};
       return {
@@ -32,7 +34,7 @@ function m(props: DetailOrderreviewProps): any {
       };
     }
     return { elevation: value };
-  };
+  }
 
   const diskon = (diskon?: any) => {
 
@@ -78,8 +80,8 @@ function m(props: DetailOrderreviewProps): any {
 
               <View style={{ marginLeft: 10 }}>
                 <Text>September 28 ,2023</Text>
-                <Text style={{ fontWeight: 'bold' }}>Lapangan A</Text>
-                <Text style={{ fontWeight: 'bold' }}>Rp 100.000</Text>
+                <Text style={{ fontWeight: 'bold' }}>{data.field}</Text>
+                <Text style={{ fontWeight: 'bold' }}>{data.price}</Text>
               </View>
 
             </View>
@@ -87,7 +89,7 @@ function m(props: DetailOrderreviewProps): any {
           </View>
 
           <View style={{ marginHorizontal: 20, ...elevation(8), height: 220, backgroundColor: '#ffffff', borderRadius: 10, paddingHorizontal: 15, paddingVertical: 10 }}>
-            <Text style={{marginVertical: 10,}}>Ringkasan Pembayaran </Text>
+            <Text style={{ marginVertical: 10, }}>Ringkasan Pembayaran </Text>
             <DashedLine dashLength={10} dashThickness={2} dashGap={5} dashColor='#979797da' />
             <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'space-between' }}>
               <Text>Biaya Sewa</Text>
@@ -105,26 +107,26 @@ function m(props: DetailOrderreviewProps): any {
             </View>
             <Divider theme={{ colors: { primary: 'green' } }} />
             <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'space-between' }}>
-           
-              <Text>Total Bayar</Text> 
-              
-              <Text>Rp 300.000</Text>
+
+              <Text>Total Bayar</Text>
+
+              <Text>Rp {data.finalPrice}</Text>
             </View>
           </View>
 
-          <View style={{ paddingHorizontal: 20, marginTop: 20, height:10,backgroundColor:'#ffffff'}}></View>
+          <View style={{ paddingHorizontal: 20, marginTop: 20, height: 10, backgroundColor: '#ffffff' }}></View>
 
 
         </View>
       </ScrollView>
 
-    
+
       <View style={{ ...elevation(3), borderColor: 'grey', padding: 10, flexDirection: 'row', backgroundColor: 'white', justifyContent: 'space-between' }}>
         <View style={{ marginLeft: 15, flexDirection: 'column', justifyContent: 'center' }}>
           <Text style={{ fontSize: 14, fontWeight: '500', color: 'black' }}>Total Biaya</Text>
           <Text style={{ fontSize: 14, fontWeight: '500', color: 'black' }}>Rp 300.000</Text>
         </View>
-        <Pressable style={{ marginRight: 15, ...elevation(3), height: 50, borderRadius: 5, backgroundColor: '#0396a6', justifyContent: 'center', alignItems: 'center', }} onPress={() => { LibNavigation.navigate('detail/pembayaran')}}>
+        <Pressable style={{ marginRight: 15, ...elevation(3), height: 50, borderRadius: 5, backgroundColor: '#0396a6', justifyContent: 'center', alignItems: 'center', }} onPress={() => { LibNavigation.navigate('detail/pembayaran') }}>
           <Text style={{ fontSize: 14, fontWeight: '500', color: 'white', paddingHorizontal: 15, paddingVertical: 5, }}>Selanjutnya</Text>
         </Pressable>
       </View>

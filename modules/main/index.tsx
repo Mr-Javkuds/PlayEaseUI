@@ -125,12 +125,16 @@ function m(props: MainIndexProps): any {
           <Text style={{ marginLeft: 10, flex: 1,color:'gray',fontSize: 16 }} >Cari lapangan </Text>
         </View>
         </Pressable>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginLeft: 15 }}>
+
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginLeft: 15,height:150 }}>
           {data?.map((item, i) => {
             return (
-              <View key={item.id} style={{ height: 125, width: 125, marginRight: 5, borderRadius: 5, backgroundColor: 'pink', alignContent: 'center', alignItems: 'center', justifyContent: 'center', ...elevation(3) }}>
+            <Pressable onPress={()=>{ LibNavigation.navigate('kategori/kategoridetail')}}>
+              <View key={item.id} style={{ height: 125, width: 125, margin: 5, borderRadius: 5, backgroundColor: '#ffffff', alignContent: 'center', alignItems: 'center', justifyContent: 'center', ...elevation(5) }}>
                 <Text allowFontScaling={false}>{item.title}</Text>
+                <LibIcon name={'basketball'} />
               </View>
+            </Pressable>
             );
           })}
         </ScrollView>

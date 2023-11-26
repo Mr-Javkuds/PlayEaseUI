@@ -1,3 +1,4 @@
 {
-  "figma.assetPublicPath": "/images"
+  "figma.assetPublicPath": "/images",
+  "figma.autocompleteBlocks": true
 }

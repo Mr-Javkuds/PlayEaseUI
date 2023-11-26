@@ -3,10 +3,10 @@ import { Feather } from '@expo/vector-icons';
 import { LibNavigation } from 'esoftplay/cache/lib/navigation/import';
 import { LibSlidingup } from 'esoftplay/cache/lib/slidingup/import';
 import { LibStyle } from 'esoftplay/cache/lib/style/import';
-import { UtilsDatepicker } from 'esoftplay/cache/utils/datepicker/import';
+
 import { UtilsDot } from 'esoftplay/cache/utils/dot/import';
-import moment from 'esoftplay/moment';
-import useSafeState from 'esoftplay/state';
+import esp from 'esoftplay/esp';
+
 import { memo, useEffect, useRef, useState } from 'react';
 
 import React from 'react';
@@ -14,18 +14,19 @@ import { FlatList, ImageBackground, Platform, Pressable, Text, View } from 'reac
 
 
 
-export interface DetailPilihjamArgs {
+export interface DetailPilihhaurArgs {
 
 }
-export interface DetailPilihjamProps {
+export interface DetailPilihhaurProps {
 
 
 }
-function m(props: DetailPilihjamProps): any {
- 
+function m(props: DetailPilihhaurProps): any {
+  const { data, } = LibNavigation.getArgsAll(props)
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
 
+  esp.log({ data });
 
   const elevation = (value: any) => {
     if (Platform.OS === 'ios') {
@@ -42,7 +43,7 @@ function m(props: DetailPilihjamProps): any {
 
 
 
-  const jam = [
+  const haur = [
     { id: 1, title: '08:00', statusLapangan: 'Belum Dipesan' },
     { id: 2, title: '09:00', statusLapangan: 'Belum Dipesan' },
     { id: 3, title: '10:00', statusLapangan: 'Belum Dipesan' },
@@ -68,12 +69,17 @@ function m(props: DetailPilihjamProps): any {
       setSelectedIndices((prevSelected) => [...prevSelected, index]);
     }
     console.log(...selectedIndices);
+    console.log(typeof(selectedIndices.length));
+    console.log(Number(data.price)*selectedIndices.length);
   };
 
+  const slctlistLength = selectedIndices.length;
+
+ 
   return (
     <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
       <FlatList
-        data={jam}
+        data={haur}
         ListHeaderComponent={
           <View>
             <ImageBackground source={{ uri: 'https://lapanganfutsal.id/wp-content/uploads/2023/01/venus-futsal1.jpg' }} style={{ width: LibStyle.width, padding: 30, height: LibStyle.width / 2 }} />
@@ -88,7 +94,7 @@ function m(props: DetailPilihjamProps): any {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => (
 
-          <Pressable onPress={() => { handlePress(index) }}>
+          <Pressable onPress={() => { handlePress(index)  }}>
             <View key={item.id} style={{ marginHorizontal: 15, marginTop: 15, paddingHorizontal: 10, height: 70, justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', backgroundColor: selectedIndices.includes(index) ? '#0396a6' : '#ffffff', borderRadius: 5, ...elevation(5) }}>
 
               <View style={{ flex: 3, flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -102,9 +108,18 @@ function m(props: DetailPilihjamProps): any {
       <View style={{ ...elevation(3), borderColor: 'grey', padding: 10, flexDirection: 'row', backgroundColor: 'white', justifyContent: 'space-between' }}>
         <View style={{ marginLeft: 15, flexDirection: 'column', justifyContent: 'center' }}>
           <Text style={{ fontSize: 14, fontWeight: '500', color: 'black' }}>Total harga</Text>
-          <Text style={{ fontSize: 14, fontWeight: '500', color: 'black' }}>Rp. 200.000</Text>
+          <Text style={{ fontSize: 14, fontWeight: '500', color: 'black' }}>{Number(data.price)*slctlistLength}</Text>
         </View>
-        <Pressable style={{ marginRight: 15, ...elevation(3), height: 50, borderRadius: 5, backgroundColor: '#0396a6', justifyContent: 'center', alignItems: 'center', }} onPress={() => { LibNavigation.navigate('detail/orderreview') }} >
+        
+        <Pressable style={{ marginRight: 15, ...elevation(3), height: 50, borderRadius: 5, backgroundColor: '#0396a6', justifyContent: 'center', alignItems: 'center', }} 
+        onPress={() => { 
+          let dat = {
+            field: data.field,
+            price: data.price,
+            finalPrice: data.price*slctlistLength,
+          }
+          LibNavigation.navigate('detail/orderreview',{ data: dat,}) 
+          }} >
           <Text style={{ fontSize: 14, fontWeight: '500', color: 'white', paddingHorizontal: 15, paddingVertical: 5, }}>Selanjutnya</Text>
         </Pressable>
       </View>

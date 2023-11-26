@@ -1,26 +1,22 @@
 // withHooks
 import { memo, useState } from 'react';
 
-import { LibIcon } from 'esoftplay/cache/lib/icon/import';
-import React from 'react';
-import { Dimensions, FlatList, Image, ImageBackground, Platform, Pressable, StatusBar, Text, TextInput, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { LibStyle } from 'esoftplay/cache/lib/style/import';
-import { UtilsDot } from 'esoftplay/cache/utils/dot/import';
+import { LibIcon } from 'esoftplay/cache/lib/icon/import';
 import { LibNavigation } from 'esoftplay/cache/lib/navigation/import';
+import { LibStyle } from 'esoftplay/cache/lib/style/import';
+import React from 'react';
+import { FlatList, Image, ImageBackground, Platform, Pressable, StatusBar, Text, TextInput, View } from 'react-native';
 import { isIPhoneX } from 'react-native-isiphonex-device';
 
 
-export interface UtilsSearchlistArgs {
-
-}
-export interface UtilsSearchlistProps {
-
-}
-function m(props: UtilsSearchlistProps): any {
-
-  // Dimensions.get("window");
+export interface KategoriDetailArgs {
   
+}
+export interface KategoriDetailProps {
+  
+}
+function m(props: KategoriDetailProps): any {
   function elevation(value: any) {
     if (Platform.OS === "ios") {
       if (value === 0) return {};
@@ -28,8 +24,7 @@ function m(props: UtilsSearchlistProps): any {
     }
     return { elevation: value };
   }
-  
-  
+
   let datLapangan = [
     {
       id: 1,
@@ -80,19 +75,29 @@ function m(props: UtilsSearchlistProps): any {
       image: 'https://lapanganfutsal.id/wp-content/uploads/2023/01/venus-futsal1.jpg'
     }
   ];
+
   const STATUSBAR_HEIGHT = (Platform.OS === "ios" ? isIPhoneX ? 44 : 20 : StatusBar.currentHeight) || 0;
 
-  
+    // Initialize with the original data
   const [searchQuery, setsearchQuery] = useState("");
-  const [filteredData, setFilteredData] = useState(datLapangan); // Initialize with the original data
-  const handlequery = (query: string) => {
+  const [filteredData, setFilteredData] = useState(datLapangan);
+  
+const handlequery = (query: string) => {
+    // Mengonversi query menjadi huruf kecil agar pencarian menjadi case-insensitive
     const formattedQuery = query.toLocaleLowerCase();
     
+    // Melakukan filter data berdasarkan query pada properti title
     let filtered = datLapangan.filter((datLapangan) => datLapangan.title.toLowerCase().includes(formattedQuery));
+    
+    // Mengatur state searchQuery sesuai dengan query yang dimasukkan pengguna
     setsearchQuery(query);
+    
+    // Mengatur state filteredData dengan data hasil filter
     setFilteredData(filtered);
+    
+    // Menampilkan hasil filter di console (optional, hanya untuk debugging)
     console.log(filteredData);
-  };
+};
 
   
     
@@ -164,16 +169,13 @@ function m(props: UtilsSearchlistProps): any {
                 </Pressable>
           </View>
         )
-       
-        }
-         
-        
-      />
+      }
+    />
 
 
    
 
-    </View>
-  );}
-
+  </View>
+  )
+}
 export default memo(m);
