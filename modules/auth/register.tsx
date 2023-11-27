@@ -1,23 +1,19 @@
 // withHooks
+import { memo } from 'react';
 
 import { LibNavigation } from 'esoftplay/cache/lib/navigation/import';
 import { LibStyle } from 'esoftplay/cache/lib/style/import';
-import { memo } from 'react';
-
 import React from 'react';
-import { Image, Platform, Pressable, Text, TextInput, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
 
-
-export interface AuthLoginArgs {
+export interface AuthRegisterArgs {
 
 }
-export interface AuthLoginProps {
+export interface AuthRegisterProps {
 
 }
-function m(props: AuthLoginProps): any {
-
+function m(props: AuthRegisterProps): any {
   function elevation(value: any) {
     if (Platform.OS === "ios") {
       if (value === 0) return {};
@@ -52,14 +48,14 @@ function m(props: AuthLoginProps): any {
     }
 
   }
-  
+
   return (
     <View style={{ flex: 1, backgroundColor: '#1d9be3', marginTop: LibStyle.STATUSBAR_HEIGHT }}>
       <ScrollView style={{ flex: 1 }} >
         <View style={{ height: LibStyle.height / 4, backgroundColor: '#1d9be3', justifyContent: 'center', alignItems: 'flex-start', padding: 20 }}>
           <Text allowFontScaling={false} style={{ color: '#fcfcfc', fontSize: 28, fontWeight: 'bold' }} >PlayEasy </Text>
           <Text allowFontScaling={false} style={{ color: '#fcfcfc', fontSize: 28, fontWeight: 'bold' }} >selamat datang </Text>
-          <Text allowFontScaling={false} style={{ color: '#fcfcfc', fontSize: 28, fontWeight: 'bold' }} >Kami merindukanmu </Text>
+          <Text allowFontScaling={false} style={{ color: '#fcfcfc', fontSize: 28, fontWeight: 'bold' }} >Daftar untuk mulai </Text>
           {/* <Image
           style={{ height: 100, width: 100 }}
           source={require('/home/yasin/tmp/playEasy/assets/gambar.png')} /> */}
@@ -99,13 +95,10 @@ function m(props: AuthLoginProps): any {
           <Pressable onPress={() => login(email, pass)} style={{ height: 50, width: LibStyle.width - 35, backgroundColor: '#1d9be3', justifyContent: 'center', alignItems: 'center', borderRadius: 10 }}>
             <Text style={{ color: '#fcfcfc', fontSize: 18, fontWeight: 'bold' }}> Login</Text>
           </Pressable>
-          <View style={{ flexDirection: 'row', marginTop: 20 ,justifyContent:'space-between',width: LibStyle.width - 35 }}>
-
-            <Pressable onPress={() => { console.log("LibNavigation.navigate('auth/lupapassword')") }}>
-              <Text style={{ color: '#000000', fontSize: 15, fontWeight: 'bold' }}>Lupa kata sandi? </Text>
-            </Pressable>
-            <Pressable onPress={() => { LibNavigation.navigate('auth/register') }}>
-              <Text style={{ color: '#000000', fontSize: 15, fontWeight: 'bold' }}>Daftar </Text>
+          <View style={{ flexDirection: 'row', marginTop: 20, width: LibStyle.width - 35 }}>
+            <Text style={{ color: '#000000', fontSize: 15, fontWeight: 'bold' }}>Sudah mamiliki akun? </Text>
+            <Pressable onPress={() => { LibNavigation.navigate('auth/login') }}>
+              <Text style={{ color: '#000000', fontSize: 15, fontWeight: 'bold' }}>Masuk </Text>
             </Pressable>
           </View>
         </View>

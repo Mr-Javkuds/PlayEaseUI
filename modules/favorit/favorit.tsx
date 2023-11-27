@@ -5,6 +5,7 @@ import { LibNavigation } from 'esoftplay/cache/lib/navigation/import';
 import { Dimensions, FlatList, Image, Platform, Pressable, StatusBar, Text, View } from 'react-native';
 
 import { isIPhoneX } from 'react-native-isiphonex-device';
+import { AntDesign } from '@expo/vector-icons';
 
 
 export interface FavoritFavoritArgs {
@@ -76,6 +77,50 @@ function m(props: FavoritFavoritProps): any {
       image: 'https://lapanganfutsal.id/wp-content/uploads/2023/01/venus-futsal1.jpg'
     }
   ];
+
+  const botnav = () => {
+    return (
+      <View style={{ width: width, flexDirection: 'row', justifyContent: 'space-between', height: 60, backgroundColor: '#ffffff' }}>
+        <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+          <Pressable onPress={() => {
+            LibNavigation.navigate('main/index')
+          }}>
+            <Image source={require("/home/yasin/tmp/playEasy/assets/Home.png")} style={{ width: 30, height: 30 }} />
+
+          </Pressable>
+        </View>
+
+        <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+          <Pressable onPress={() => {
+            LibNavigation.navigate('favorit/favorit')
+          }}>
+            <Image source={require("/home/yasin/tmp/playEasy/assets/heart.png")} style={{ width: 30, height: 30 }} />
+
+          </Pressable>
+        </View>
+
+        <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+          <Pressable onPress={() => {
+            LibNavigation.navigate('jadwal/jadwal')
+          }}>
+            <Image source={require("/home/yasin/tmp/playEasy/assets/calender.png")} style={{ width: 30, height: 30 }} />
+
+          </Pressable>
+        </View>
+
+        <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+          <Pressable style={{ justifyContent: 'center', alignItems: 'center', }} onPress={
+            () => {
+              LibNavigation.navigate('profil/profil')
+            }
+          }>
+            <AntDesign name="user" size={28} color="#B9BCBE" />
+          </Pressable>
+        </View>
+
+      </View>
+    )
+  }
   return (
     <View style={{ flex: 1, backgroundColor: '#fff', marginTop: STATUSBAR_HEIGHT ,  }}>
   <FlatList
@@ -115,43 +160,7 @@ function m(props: FavoritFavoritProps): any {
           );
         }}
       />
-      <View style={{ width: width, flexDirection: 'row', justifyContent: 'space-between', height: 60, backgroundColor: 'red' }}>
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-        <Pressable onPress={() => {
-          
-              LibNavigation.navigate('main/index')
-            }}>
-          <Text allowFontScaling={false}>Home</Text>
-          </Pressable>
-        </View>
-        
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-        <Pressable onPress={() => {
-              LibNavigation.navigate('favorit/favorit')
-            }}>
-          <Text allowFontScaling={false}>Favorite</Text>
-          </Pressable>
-        </View>
-        
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-         <Pressable onPress={() => {
-          LibNavigation.navigate('jadwal/jadwal')
-         } }>
-          <Text allowFontScaling={false}>Jadwal</Text>
-          </Pressable>
-        </View>
-
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-          <Pressable style={{ justifyContent: 'center', alignItems: 'center', }} onPress={
-            () => {
-              LibNavigation.navigate('profil/profil')
-            }
-          }>
-            <Text allowFontScaling={false}>Profile</Text>
-          </Pressable>
-        </View>
-
-      </View>
+      {botnav()}
     </View>
   )
 }

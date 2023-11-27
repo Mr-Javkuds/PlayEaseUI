@@ -6,10 +6,10 @@ import { LibPicture } from 'esoftplay/cache/lib/picture/import';
 import { LibStyle } from 'esoftplay/cache/lib/style/import';
 import { UtilsCustomCard } from 'esoftplay/cache/utils/customCard/import';
 import React from 'react';
-import { Dimensions, ImageBackground, Platform, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, ImageBackground, Platform, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { isIPhoneX } from 'react-native-isiphonex-device';
 import { LibIcon } from 'esoftplay/cache/lib/icon/import';
-import { Feather, FontAwesome, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { AntDesign, Feather, FontAwesome, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 
 export interface ProfilProfilArgs {
@@ -41,6 +41,49 @@ function m(props: ProfilProfilProps): any {
         <UtilsCustomCard name={'Kebijakan Privasi'} />
         <UtilsCustomCard name={'Hapus Akun'} /> */}
 
+        const botnav = () => {
+          return (
+            <View style={{ width: width, flexDirection: 'row', justifyContent: 'space-between', height: 60, backgroundColor: '#ffffff' }}>
+              <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+                <Pressable onPress={() => {
+                  LibNavigation.navigate('main/index')
+                }}>
+                  <Image source={require("/home/yasin/tmp/playEasy/assets/Home.png")} style={{ width: 30, height: 30 }} />
+      
+                </Pressable>
+              </View>
+      
+              <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+                <Pressable onPress={() => {
+                  LibNavigation.navigate('favorit/favorit')
+                }}>
+                  <Image source={require("/home/yasin/tmp/playEasy/assets/heart.png")} style={{ width: 30, height: 30 }} />
+      
+                </Pressable>
+              </View>
+      
+              <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+                <Pressable onPress={() => {
+                  LibNavigation.navigate('jadwal/jadwal')
+                }}>
+                  <Image source={require("/home/yasin/tmp/playEasy/assets/calender.png")} style={{ width: 30, height: 30 }} />
+      
+                </Pressable>
+              </View>
+      
+              <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+                <Pressable style={{ justifyContent: 'center', alignItems: 'center', }} onPress={
+                  () => {
+                    LibNavigation.navigate('profil/profil')
+                  }
+                }>
+                  <AntDesign name="user" size={28} color="#B9BCBE" />
+                </Pressable>
+              </View>
+      
+            </View>
+          )
+        }
 
   return (
     <View style={{ flex: 1, backgroundColor: "#ffffff",marginTop:LibStyle.STATUSBAR_HEIGHT }} >
@@ -116,41 +159,7 @@ function m(props: ProfilProfilProps): any {
 
       </ScrollView>
 
-      <View style={{ width: width, flexDirection: 'row', justifyContent: 'space-between', height: 60, backgroundColor: 'red' }}>
-
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-          <Pressable onPress={() => {
-            LibNavigation.navigate('main/index')
-          }}>
-            <Text allowFontScaling={false}>Home</Text>
-          </Pressable>
-        </View>
-
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-          <Pressable onPress={() => { LibNavigation.navigate('favorit/favorit') }}>
-            <Text allowFontScaling={false}>Favorite</Text>
-          </Pressable>
-        </View>
-
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-          <Pressable onPress={() => {
-            LibNavigation.navigate('jadwal/jadwal')
-          }}>
-            <Text allowFontScaling={false}>Jadwal</Text>
-          </Pressable>
-        </View>
-
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-          <Pressable style={{ justifyContent: 'center', alignItems: 'center', }} onPress={
-            () => {
-              LibNavigation.navigate('profil/profil')
-            }
-          }>
-            <Text allowFontScaling={false}>Profile</Text>
-          </Pressable>
-        </View>
-
-      </View>
+      {botnav()}
 
     </View>
   );

@@ -4,13 +4,14 @@ import { memo } from 'react';
 import { LibStatusbar } from 'esoftplay/cache/lib/statusbar/import';
 import { LibTabs } from 'esoftplay/cache/lib/tabs/import';
 import React from 'react';
-import { Dimensions, Pressable, Text, View } from 'react-native';
+import { Dimensions, Image, Pressable, Text, View } from 'react-native';
 import { LibStyle } from 'esoftplay/cache/lib/style/import';
 import useSafeState from 'esoftplay/state';
 import { UseCondition } from 'esoftplay/cache/use/condition/import';
 import { JadwalRiwayat } from 'esoftplay/cache/jadwal/Riwayat/import';
 import { JadwalDalamProses } from 'esoftplay/cache/jadwal/dalamProses/import';
 import { LibNavigation } from 'esoftplay/cache/lib/navigation/import';
+import { AntDesign } from '@expo/vector-icons';
 
 
 export interface JadwalJadwalArgs {
@@ -21,11 +22,53 @@ export interface JadwalJadwalProps {
 
 }
 function m(props: JadwalJadwalProps): any {
- let { width, height } = Dimensions.get("window");
+  let { width, height } = Dimensions.get("window");
 
   const [tab, setTab] = useSafeState(0)
 
+  const botnav = () => {
+    return (
+      <View style={{ width: width, flexDirection: 'row', justifyContent: 'space-between', height: 60, backgroundColor: '#ffffff' }}>
+        <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+          <Pressable onPress={() => {
+            LibNavigation.navigate('main/index')
+          }}>
+            <Image source={require("/home/yasin/tmp/playEasy/assets/Home.png")} style={{ width: 30, height: 30 }} />
 
+          </Pressable>
+        </View>
+
+        <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+          <Pressable onPress={() => {
+            LibNavigation.navigate('favorit/favorit')
+          }}>
+            <Image source={require("/home/yasin/tmp/playEasy/assets/heart.png")} style={{ width: 30, height: 30 }} />
+
+          </Pressable>
+        </View>
+
+        <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+          <Pressable onPress={() => {
+            LibNavigation.navigate('jadwal/jadwal')
+          }}>
+            <Image source={require("/home/yasin/tmp/playEasy/assets/calender.png")} style={{ width: 30, height: 30 }} />
+
+          </Pressable>
+        </View>
+
+        <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
+          <Pressable style={{ justifyContent: 'center', alignItems: 'center', }} onPress={
+            () => {
+              LibNavigation.navigate('profil/profil')
+            }
+          }>
+            <AntDesign name="user" size={28} color="#B9BCBE" />
+          </Pressable>
+        </View>
+
+      </View>
+    )
+  }
 
   return (
     <View style={{ flex: 1, marginTop: LibStyle.STATUSBAR_HEIGHT }}>
@@ -45,44 +88,8 @@ function m(props: JadwalJadwalProps): any {
         tab == 0 ? <JadwalDalamProses /> : <JadwalRiwayat />
       }
 
-<View style={{ width: width, flexDirection: 'row', justifyContent: 'space-between', height: 60, backgroundColor: 'red' }}>
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-        <Pressable onPress={() => {
-          
-              LibNavigation.navigate('main/index')
-            }}>
-          <Text allowFontScaling={false}>Home</Text>
-          </Pressable>
-        </View>
-        
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-        <Pressable onPress={() => {
-              LibNavigation.navigate('favorit/favorit')
-            }}>
-          <Text allowFontScaling={false}>Favorite</Text>
-          </Pressable>
-        </View>
-        
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-         <Pressable onPress={() => {
-          LibNavigation.navigate('jadwal/jadwal')
-         } }>
-          <Text allowFontScaling={false}>Jadwal</Text>
-          </Pressable>
-        </View>
 
-        <View style={{ backgroundColor: 'green', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: width / 4 }}>
-          <Pressable style={{ justifyContent: 'center', alignItems: 'center', }} onPress={
-            () => {
-              LibNavigation.navigate('profil/profil')
-            }
-          }>
-            <Text allowFontScaling={false}>Profile</Text>
-          </Pressable>
-        </View>
-
-      </View>
-
+      {botnav()}
     </View>
   )
 }

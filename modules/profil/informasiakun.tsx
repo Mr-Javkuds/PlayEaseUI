@@ -31,8 +31,7 @@ function m(props: ProfilInformasiakunProps): any {
         {/* column */}
         <View style={{ flex: 1, padding: 20, alignItems: 'center' }}>
           <View style={{ height:200, width: LibStyle.width, alignItems: 'center', borderBottomLeftRadius: 105, borderBottomRightRadius: 0, backgroundColor: '#1d9be3' }}>
-            {/* image */}
-            {/* appbar */}
+       
             <View style={{ flexDirection: 'row', width: LibStyle.width, height: 50, backgroundColor: "#1d9be3", padding: 10, }}>
               <LibIcon.Feather name="chevron-left" size={40} color="#ffffff99" />
               <Text style={{ fontSize: 20, color: "#ffffff", marginLeft: 10, marginTop: 5, fontWeight: 'bold' }}>Informasi Akun</Text>
@@ -45,7 +44,7 @@ function m(props: ProfilInformasiakunProps): any {
             <Text style={{ color: '#000000', fontSize: 15, fontWeight: 'bold', marginBottom: 10 }}>Username</Text>
             <View style={{ padding: 5, backgroundColor: '#ffffff', width: LibStyle.width - 40, alignSelf: 'center', borderRadius: 10, marginBottom: 20, ...elevation(3) }}>
               <TextInput
-                placeholder='Search'
+                placeholder='Name'
                 autoCorrect={true}
                 style={{ marginLeft: 10, width: LibStyle.width - 10, height: 45 }}
               />
@@ -56,7 +55,7 @@ function m(props: ProfilInformasiakunProps): any {
             <Text style={{ color: '#000000', fontSize: 15, fontWeight: 'bold', marginBottom: 10 }}>Email</Text>
             <View style={{ padding: 5, backgroundColor: '#ffffff', width: LibStyle.width - 40, alignSelf: 'center', borderRadius: 10, marginBottom: 20, ...elevation(3) }}>
               <TextInput
-                placeholder='Search'
+                placeholder='Email'
                 autoCorrect={true}
                 style={{ marginLeft: 10, width: LibStyle.width - 10, height: 45 }}
               />
